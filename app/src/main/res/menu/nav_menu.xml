@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="首页">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_clear_cache"
+                    android:icon="@drawable/sound_open"
+                    android:title="清理缓存" />
+                <item
+                    android:id="@+id/nav_version_update"
+                    android:icon="@drawable/sound_open"
+                    android:title="版本更新" />
+                <item
+                    android:id="@+id/nav_change_theme"
+                    android:icon="@drawable/sound_open"
+                    android:title="更换主题" />
+                <item
+                    android:id="@+id/nav_other"
+                    android:icon="@drawable/sound_open"
+                    android:title="关于" />
+            </group>
+        </menu>
+
+    </item>
+
+
+    <item android:title="更多">
+        <menu>
+
+            <item
+                android:id="@+id/nav_day_night"
+                android:icon="@drawable/sound_open"
+                android:title="切换夜间" />
+        </menu>
+    </item>
+
+</menu>

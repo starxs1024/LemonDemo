@@ -21,8 +21,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     //jiecao
     //快速流畅图片滑动框架
     //卡片式布局

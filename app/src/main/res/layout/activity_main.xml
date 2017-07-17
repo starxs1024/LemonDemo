@@ -87,13 +87,16 @@
         </LinearLayout>
 
         <android.support.design.widget.NavigationView
-            android:id="@+id/nv_left"
+            android:id="@+id/nv_right"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="right"
             android:background="#000"
+            app:itemTextColor="@color/colorPrimary"
+            app:itemIconTint="@color/colorLightGrey"
             app:headerLayout="@layout/nav_head"
             app:menu="@menu/nav_menu" />
+
     </android.support.v4.widget.DrawerLayout>
 
 

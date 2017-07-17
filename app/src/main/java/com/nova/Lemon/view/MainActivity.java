@@ -2,10 +2,13 @@ package com.nova.Lemon.view;
 
 import android.app.Service;
 import android.content.DialogInterface;
+import android.content.res.ColorStateList;
+import android.content.res.Resources;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemClock;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
@@ -21,6 +24,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.nova.Lemon.R;
+import com.nova.Lemon.util.ActivityUtils;
 import com.nova.Lemon.util.CacheDataUtils;
 import com.nova.Lemon.VPApplication;
 
@@ -31,14 +35,17 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 
+import static android.R.attr.resource;
+
 public class MainActivity extends AppCompatActivity {
-    @Bind(R.id.iv_sound)
-    ImageView ivSound;
+    private ActivityUtils utils;
     private AudioManager audioManager = null; // 音频
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.nv_left)
+    @Bind(R.id.iv_sound)
+    ImageView ivSound;
+    @Bind(R.id.nv_right)
     NavigationView nvReight;
     @Bind(R.id.drawerlayout_activity_main)
     DrawerLayout drawerlayoutActivityMain;
@@ -49,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout toolbarMainLeft;
 
     private String mDirSize = "";
-    private MyHandler mHandler;
     public static final int SUCESS = 0;
     public static final int FAILED = 1;
     // 默认声音 为静音
@@ -81,7 +87,11 @@ public class MainActivity extends AppCompatActivity {
             isSound = false;
         }
 
-        /*************************** 左侧 侧滑菜单 设置选择事件 ***************************/
+        /*************************** 右侧 侧滑菜单 设置选择事件 ***************************/
+        //设置MenuItem的字体颜色
+        Resources resource=getBaseContext().getResources();
+        ColorStateList csl=resource.getColorStateList(R.color.navigation_menu_item_color);
+        nvReight.setItemTextColor(csl);
         nvReight.setCheckedItem(R.id.nav_clear_cache);
         nvReight.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
@@ -141,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /****************************** 缓存清理操作 ***********************************/
+
     private void clearCache() {
         try {
             // 清理前的缓存大小
@@ -156,13 +167,15 @@ public class MainActivity extends AppCompatActivity {
                                         @Override
                                         public void run() {
                                             CacheDataUtils.clearAllCache(
-                                                    getApplicationContext());
+                                                    MainActivity.this);
+                                            SystemClock.sleep(1000);
                                             try {
+
                                                 if (CacheDataUtils
                                                         .getTotalCacheSize(
-                                                                getApplicationContext())
+                                                                MainActivity.this)
                                                         .startsWith("0")) {
-                                                    mHandler.sendEmptyMessage(
+                                                    handler.sendEmptyMessage(
                                                             SUCESS);
                                                 }
                                             } catch (Exception e) {
@@ -181,34 +194,23 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    class MyHandler extends Handler {
-        WeakReference<MainActivity> mActivity;
+    private Handler handler = new Handler() {
 
-        MyHandler(MainActivity activity) {
-            mActivity = new WeakReference<>(activity);
-        }
-
-        @Override
-        public void handleMessage(Message msg) {
-            MainActivity theActivity = mActivity.get();
-            if (theActivity == null || theActivity.isFinishing()) {
-                return;
-            }
-            // 消息处理
+        public void handleMessage(android.os.Message msg) {
             switch (msg.what) {
             case SUCESS:
-                // ActivityUtils.showToast("清理成功");
-                Toast.makeText(getApplicationContext(), "清理完成",
-                        Toast.LENGTH_SHORT).show();
-                break;
-            case FAILED:
-
-                break;
-            default:
-                break;
+                Toast.makeText(MainActivity.this, "清理完成", Toast.LENGTH_SHORT)
+                        .show();
+                try {
+                    // 显示的TextView上显示清理前的缓存大小
+                    // txtCacheSize.setText(CacheDataManager.getTotalCacheSize(SettingsActivity.this));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
-    }
+
+    };
 
     /**************************** 设置声音 ********************************/
     private void setSound() {
@@ -248,7 +250,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
-
 }
 
 class AudioPlayUtils {

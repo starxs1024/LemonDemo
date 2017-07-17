@@ -73,9 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
         audioManager = (AudioManager) getSystemService(Service.AUDIO_SERVICE);
         audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);// 开局静音
-        // // 当前音量
-        // currentVolume = audioManager
-        // .getStreamVolume(AudioManager.STREAM_MUSIC);
+
         // 设置静音
         audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
         if (isSound) {
@@ -217,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
         if (!isSound) {
             ivSound.setImageResource(R.drawable.sound_open);
             isSound = true;
-            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 50, 0);// tempVolume:音量绝对值
+            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 7, 0);// tempVolume:音量绝对值
         } else {
             ivSound.setImageResource(R.drawable.sound_off);
             isSound = false;
@@ -230,24 +228,49 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
-            case KeyEvent.KEYCODE_VOLUME_DOWN://游戏音量减小
-//                AudioPlayUtils.getInstance().lowerVoice();
-                lowerVoice();
-                return true;
-            case KeyEvent.KEYCODE_VOLUME_UP://游戏音量增大
-//                AudioPlayUtils.getInstance().raiseVoice();
-                raiseVoice();
-                return true;
-            default:
-                break;
+        case KeyEvent.KEYCODE_VOLUME_DOWN:// 游戏音量减小
+            AudioPlayUtils.getInstance().lowerVoice(audioManager);
+            // 当前音量
+            int currentVolume = audioManager
+                    .getStreamVolume(AudioManager.STREAM_MUSIC);
+            if (currentVolume == 0) {
+                ivSound.setImageResource(R.drawable.sound_off);
+                isSound = false;
+            }
+            return true;
+        case KeyEvent.KEYCODE_VOLUME_UP:// 游戏音量增大
+            AudioPlayUtils.getInstance().raiseVoice(audioManager);
+            ivSound.setImageResource(R.drawable.sound_open);
+            isSound = true;
+            return true;
+        default:
+            break;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+}
+
+class AudioPlayUtils {
+    private static class AudioPlayUtilsHolder {
+        private static AudioPlayUtils instance = new AudioPlayUtils();
+    }
+
+    /**
+     * 私有的构造函数
+     */
+    private AudioPlayUtils() {
+
+    }
+
+    public static AudioPlayUtils getInstance() {
+        return AudioPlayUtils.AudioPlayUtilsHolder.instance;
     }
 
     /**
      * 调高音量(多媒体音量)
      */
-    public void raiseVoice() {
+    protected void raiseVoice(AudioManager audioManager) {
         // 强制调用多媒体音量
         audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC,
                 AudioManager.ADJUST_RAISE,
@@ -267,7 +290,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * 调小音量(多媒体音量)
      */
-    public void lowerVoice() {
+    protected void lowerVoice(AudioManager audioManager) {
         // 强制调用多媒体音量
         audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC,
                 AudioManager.ADJUST_LOWER,

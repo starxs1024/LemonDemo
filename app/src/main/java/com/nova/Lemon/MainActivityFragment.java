@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.bumptech.glide.Glide;
-import com.nova.Lemon.util.VPApplication;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

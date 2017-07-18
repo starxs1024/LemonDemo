@@ -1,21 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="8dp"
-        android:background="#123eef"
-        />
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
     <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
         android:id="@+id/videoplayer"
         android:layout_width="match_parent"
-        android:layout_height="260dp"/>
+        android:layout_height="260dp">
+
+        <TextView
+            android:id="@+id/jc_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="10dp"
+            android:text="这里是标题" />
+        <TextView
+            android:id="@+id/jc_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="45dp"
+            android:layout_marginLeft="10dp"
+            android:padding="5dp"
+            android:background="@drawable/jc_tv_border"
+            android:textSize="10sp"
+            android:text="1:00" />
+
+    </fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard>
+
+
     <View
         android:layout_width="match_parent"
         android:layout_height="8dp"
-        android:background="#123eef"
-        />
+        android:background="@color/colorGreyish" />
 
 </LinearLayout>

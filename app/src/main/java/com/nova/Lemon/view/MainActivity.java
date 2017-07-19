@@ -19,41 +19,37 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.nova.Lemon.R;
+import com.nova.Lemon.VPApplication;
 import com.nova.Lemon.util.ActivityUtils;
 import com.nova.Lemon.util.CacheDataUtils;
-import com.nova.Lemon.VPApplication;
 
-import java.lang.ref.WeakReference;
-
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 
-import static android.R.attr.resource;
-
 public class MainActivity extends AppCompatActivity {
+    @BindView(R.id.iv_sound)
+    ImageView ivSound;
+    @BindView(R.id.toolbar_main_left)
+    LinearLayout toolbarMainLeft;
+    @BindView(R.id.toolbar_main_reight)
+    LinearLayout toolbarMainReight;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.nv_right)
+    NavigationView nvRight;
+    @BindView(R.id.drawerlayout_activity_main)
+    DrawerLayout drawerlayoutActivityMain;
+
     private ActivityUtils utils;
     private AudioManager audioManager = null; // 音频
-
-    @Bind(R.id.toolbar)
-    Toolbar toolbar;
-    @Bind(R.id.iv_sound)
-    ImageView ivSound;
-    @Bind(R.id.nv_right)
-    NavigationView nvReight;
-    @Bind(R.id.drawerlayout_activity_main)
-    DrawerLayout drawerlayoutActivityMain;
-    @Bind(R.id.toolbar_main_reight)
-    LinearLayout toolbarMainReight;
-
-    @Bind(R.id.toolbar_main_left)
-    LinearLayout toolbarMainLeft;
 
     private String mDirSize = "";
     public static final int SUCESS = 0;
@@ -68,9 +64,16 @@ public class MainActivity extends AppCompatActivity {
         // 取消标题
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
-        // 取消状态栏
-        // getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-        // WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        /*
+         * if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) { // 透明状态栏
+         * getWindow().addFlags(
+         * WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); }
+         */
+        // 设置软键盘的模式为适应屏幕模式
+        getWindow().setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         // 标题栏
@@ -88,16 +91,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
         /*************************** 右侧 侧滑菜单 设置选择事件 ***************************/
-        //设置MenuItem的字体颜色
-        Resources resource=getBaseContext().getResources();
-        ColorStateList csl=resource.getColorStateList(R.color.navigation_menu_item_color);
-        nvReight.setItemTextColor(csl);
-        nvReight.setCheckedItem(R.id.nav_clear_cache);
-        nvReight.setNavigationItemSelectedListener(
+        // 设置MenuItem的字体颜色
+        Resources resource = getBaseContext().getResources();
+        ColorStateList csl = resource
+                .getColorStateList(R.color.navigation_menu_item_color);
+        nvRight.setItemTextColor(csl);
+        nvRight.setCheckedItem(R.id.nav_clear_cache);
+        nvRight.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem item) {
-                        nvReight.setCheckedItem(item.getItemId());
+                        nvRight.setCheckedItem(item.getItemId());
                         drawerlayoutActivityMain.closeDrawers();
                         switch (item.getItemId()) {
                         case R.id.nav_clear_cache:
@@ -121,32 +125,6 @@ public class MainActivity extends AppCompatActivity {
             } else if (VPApplication.instance.VideoPlaying.currentState == JCVideoPlayer.CURRENT_STATE_PREPAREING) {
                 JCVideoPlayer.releaseAllVideos();
             }
-        }
-    }
-
-    /****************************** 右侧侧滑菜单open操作 ***********************************/
-    @OnClick(R.id.toolbar_main_reight)
-    public void onViewClicked() {
-        // mdrawerLayout.openDrawer(Gravity.LEFT);//这里设置的方向应该跟下面xml文件里面的gravity方向相同，不然会报错,start和LEFT都为从左边出现
-        if (drawerlayoutActivityMain.isDrawerOpen(Gravity.RIGHT)) {
-            drawerlayoutActivityMain.closeDrawer(Gravity.RIGHT);
-        } else {
-            drawerlayoutActivityMain.openDrawer(Gravity.RIGHT);
-        }
-    }
-
-    /****************************** 左侧声音的open操作 ***********************************/
-
-    @OnClick({ R.id.iv_sound, R.id.toolbar_main_left })
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-        case R.id.iv_sound:
-            setSound();
-            break;
-        case R.id.toolbar_main_left:
-            // 全局静音和开音
-            setSound();
-            break;
         }
     }
 
@@ -196,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Handler handler = new Handler() {
 
-        public void handleMessage(android.os.Message msg) {
+        public void handleMessage(Message msg) {
             switch (msg.what) {
             case SUCESS:
                 Toast.makeText(MainActivity.this, "清理完成", Toast.LENGTH_SHORT)
@@ -249,6 +227,36 @@ public class MainActivity extends AppCompatActivity {
             break;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @OnClick({ R.id.iv_sound, R.id.toolbar_main_left, R.id.toolbar_main_reight,
+            R.id.drawerlayout_activity_main })
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+        /****************************** 左侧声音的open操作 ***********************************/
+        case R.id.iv_sound:
+            setSound();
+            break;
+        case R.id.toolbar_main_left:
+            // 全局静音和开音
+            setSound();
+            break;
+        /****************************** 右侧侧滑菜单open操作 ***********************************/
+        case R.id.toolbar_main_reight:
+            // mdrawerLayout.openDrawer(Gravity.LEFT);//这里设置的方向应该跟下面xml文件里面的gravity方向相同，不然会报错,start和LEFT都为从左边出现
+            if (drawerlayoutActivityMain.isDrawerOpen(Gravity.RIGHT)) {
+                drawerlayoutActivityMain.closeDrawer(Gravity.RIGHT);
+            } else {
+                drawerlayoutActivityMain.openDrawer(Gravity.RIGHT);
+            }
+            break;
+        case R.id.drawerlayout_activity_main:
+            break;
+        }
+    }
+
+    @OnClick(R.id.toolbar_main_left)
+    public void onViewClicked() {
     }
 }
 

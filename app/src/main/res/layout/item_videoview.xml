@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBlack"
     android:orientation="vertical">
 
 
@@ -10,14 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="260dp">
 
-        <TextView
-            android:id="@+id/jc_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="10dp"
-            android:text="这里是标题" />
+
         <TextView
             android:id="@+id/jc_time"
             android:layout_width="wrap_content"
@@ -25,17 +20,53 @@
             android:layout_gravity="bottom"
             android:layout_marginBottom="45dp"
             android:layout_marginLeft="10dp"
-            android:padding="5dp"
             android:background="@drawable/jc_tv_border"
-            android:textSize="10sp"
-            android:text="1:00" />
+            android:padding="5dp"
+            android:text="1:00"
+            android:textSize="10sp" />
 
     </fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard>
 
+    <TextView
+        android:id="@+id/jc_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="2dp"
+        android:textSize="10sp"
+        android:text="这里是标题" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        >
+
+
+        <ImageView
+            android:id="@+id/iv_mord_dian"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/more_dian" />
+        <ImageView
+            android:id="@+id/iv_share"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/share" />
+        <ImageView
+            android:id="@+id/iv_love"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/love_g" />
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="8dp"
         android:background="@color/colorGreyish" />
-
 </LinearLayout>

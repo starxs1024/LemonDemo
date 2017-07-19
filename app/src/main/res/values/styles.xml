@@ -25,6 +25,9 @@
         <!--colorPrimaryDark（状态栏底色）-->
         <item name="colorPrimaryDark">@color/toolbar_background_black</item>
         <!--Window color主视窗底色-->
-        <item name="android:windowBackground">@color/dim_foreground_material_dark</item>
+        <!--<item name="android:windowBackground">@color/dim_foreground_material_dark</item>-->
+        <item name="android:windowBackground">@color/toolbar_background_black</item>
+
     </style>
+
 </resources>

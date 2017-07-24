@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Lemon</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_common">CommonActivity</string>

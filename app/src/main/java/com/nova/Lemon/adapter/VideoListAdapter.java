@@ -83,14 +83,15 @@ public class VideoListAdapter extends BaseAdapter {
                     .findViewById(R.id.jc_time);
             convertView.setTag(viewHolder);
         }
-        Log.d("isLucency", isLucency + "");
-        if (isLucency) {
-            viewHolder.layout.setAlpha(0.1f);
-            isLucency = false;
-        } else {
-            viewHolder.layout.setAlpha(1f);
-            isLucency = true;
-        }
+        // Log.d("isLucency", isLucency + "");
+        // viewHolder.layout.setAlpha(0.1f);
+        // if (isLucency) {
+        // viewHolder.layout.setAlpha(0.1f);
+        // isLucency = false;
+        // } else {
+        // viewHolder.layout.setAlpha(1f);
+        // isLucency = true;
+        // }
 
         viewHolder.jc_title.setText(list.get(position).getTitle());
         viewHolder.jc_time.setText(list.get(position).getTime());
@@ -108,7 +109,7 @@ public class VideoListAdapter extends BaseAdapter {
 
         // if (setUp) {
         Glide.with(context).load(imaglinks)
-                .into(viewHolder.jcVideoPlayer.thumbImageView);
+                .into(viewHolder.jcVideoPlayer.thumb);
         // }
         /*
          * } else {
@@ -138,7 +139,8 @@ public class VideoListAdapter extends BaseAdapter {
         LinearLayout layout;
     }
 
-    public void ChangeAlpha() {
+    public void ChangeAlpha(boolean isLucency) {
+        this.isLucency = isLucency;
 
     }
 

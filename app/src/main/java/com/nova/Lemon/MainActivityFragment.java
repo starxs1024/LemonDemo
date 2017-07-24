@@ -90,14 +90,9 @@ public class MainActivityFragment extends Fragment {
                 case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:
                     // 滚动事件结束的时候调用，调用一次
                     autoPlayVideo(view);
-//                    videoListAdapter.isLucency = false;
-//                    videoListAdapter.notifyDataSetChanged();
                     break;
                 case AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL:
                     // 开始滚动的时候调用，调用一次
-//                    videoListAdapter.isLucency = true;
-//                    videoListAdapter.notifyDataSetChanged();
-
                     break;
                 default:
                     break;

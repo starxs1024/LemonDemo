@@ -10,6 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/iv_coverage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </FrameLayout>
 
     <ImageView
@@ -22,7 +26,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:background="#000000"
+        android:background="#e0000000"
         android:scaleType="fitCenter" />
 
     <LinearLayout

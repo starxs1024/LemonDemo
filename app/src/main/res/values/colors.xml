@@ -7,6 +7,7 @@
     <color name="colorwhite">#FFFFFF</color>
     <color name="colorGreyish">#3C3F41</color>
     <color name="colorBlack">#000000</color>
+    <color name="toolbar_background_black">#303030</color>
 
 
 </resources>

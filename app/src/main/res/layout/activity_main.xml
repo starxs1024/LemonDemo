@@ -4,16 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:fitsSystemWindows="true"
+    android:orientation="vertical"
     tools:context="com.nova.Lemon.view.MainActivity">
     <!--title部分-->
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay"
-        app:popupTheme="@style/AppTheme.PopupOverlay"
-        >
+        app:popupTheme="@style/AppTheme.PopupOverlay">
 
 
         <android.support.v7.widget.Toolbar
@@ -27,8 +26,8 @@
                 android:layout_height="match_parent">
 
                 <LinearLayout
-                    android:layout_width="0dp"
                     android:id="@+id/toolbar_main_left"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:weightSum="1">
@@ -38,8 +37,8 @@
                         android:layout_width="18dp"
                         android:layout_height="18dp"
                         android:layout_gravity="center"
-                        android:scaleType="centerCrop"
-                        android:clickable="true" />
+                        android:clickable="true"
+                        android:scaleType="centerCrop" />
                 </LinearLayout>
 
                 <TextView
@@ -93,12 +92,11 @@
             android:layout_height="match_parent"
             android:layout_gravity="right"
             android:background="#000"
-            app:itemTextColor="@color/colorPrimary"
-            app:itemIconTint="@color/colorLightGrey"
             app:headerLayout="@layout/nav_head"
+            app:itemIconTint="@color/colorLightGrey"
+            app:itemTextColor="@color/colorPrimary"
             app:menu="@menu/nav_menu" />
 
     </android.support.v4.widget.DrawerLayout>
-
 
 </LinearLayout>

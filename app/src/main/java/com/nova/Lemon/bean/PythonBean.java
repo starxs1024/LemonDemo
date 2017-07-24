@@ -9,46 +9,46 @@ public class PythonBean {
 
 
     /**
-     * 标题 :
-     * 时长 : 0:16
-     * 视频链接 : http://d90mtt9ugu6z7.cloudfront.net/prod/video/2016/1228/5862dfabdb70c_wpd.mp4
-     * 图片链接 : http://d90mtt9ugu6z7.cloudfront.net/prod/picture/2016/1228/5862dfabdb70c_wpd.jpg
+     * title : تحية العرب
+     * time : 01:00
+     * videolink : http://d90mtt9ugu6z7.cloudfront.net/prod/t50.2886-16/15828198_584360275100751_8503109839541501952_n.mp4
+     * imaglinks : http://d90mtt9ugu6z7.cloudfront.net/prod/t51.2885-15/e15/15625445_1228730343859144_170260346223722496_n.jpg
      */
 
-    private String 标题;
-    private String 时长;
-    private String 视频链接;
-    private String 图片链接;
+    private String title;
+    private String time;
+    private String videolink;
+    private String imaglinks;
 
-    public String get标题() {
-        return 标题;
+    public String getTitle() {
+        return title;
     }
 
-    public void set标题(String 标题) {
-        this.标题 = 标题;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String get时长() {
-        return 时长;
+    public String getTime() {
+        return time;
     }
 
-    public void set时长(String 时长) {
-        this.时长 = 时长;
+    public void setTime(String time) {
+        this.time = time;
     }
 
-    public String get视频链接() {
-        return 视频链接;
+    public String getVideolink() {
+        return videolink;
     }
 
-    public void set视频链接(String 视频链接) {
-        this.视频链接 = 视频链接;
+    public void setVideolink(String videolink) {
+        this.videolink = videolink;
     }
 
-    public String get图片链接() {
-        return 图片链接;
+    public String getImaglinks() {
+        return imaglinks;
     }
 
-    public void set图片链接(String 图片链接) {
-        this.图片链接 = 图片链接;
+    public void setImaglinks(String imaglinks) {
+        this.imaglinks = imaglinks;
     }
 }

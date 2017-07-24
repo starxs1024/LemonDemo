@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         if (VPApplication.instance.VideoPlaying != null) {
             if (VPApplication.instance.VideoPlaying.currentState == JCVideoPlayer.CURRENT_STATE_PLAYING) {
                 VPApplication.instance.VideoPlaying.startButton.performClick();
-            } else if (VPApplication.instance.VideoPlaying.currentState == JCVideoPlayer.CURRENT_STATE_PREPAREING) {
+            } else if (VPApplication.instance.VideoPlaying.currentState == JCVideoPlayer.CURRENT_STATE_PLAYING) {
                 JCVideoPlayer.releaseAllVideos();
             }
         }

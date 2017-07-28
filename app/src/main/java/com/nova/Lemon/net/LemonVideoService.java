@@ -1,0 +1,25 @@
+package com.nova.Lemon.net;
+
+import com.nova.Lemon.bean.LemonVideoBean;
+
+import io.reactivex.Observable;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
+
+/**
+ * Created by Paraselene on 2017/7/28. Email ：15616165649@163.com
+ */
+
+public interface LemonVideoService {
+    /**
+     * @param page
+     *            查询的页数
+     * @param pagesize
+     *            一页数据显示的条数
+     * @return 查询结束返回的被观察者
+     */
+    // http://localhost:8080/Lemon/LemonVideo?pageNo=2
+    @GET("LemonVideo?pageNo=2")
+    Observable<LemonVideoBean> getLemonVideo(@Query("pageNo") int page);
+
+}

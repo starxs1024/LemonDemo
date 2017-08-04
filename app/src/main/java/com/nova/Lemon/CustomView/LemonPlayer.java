@@ -57,7 +57,8 @@ public class LemonPlayer extends JCVideoPlayerStandard {
     public void setUp(String url, int screen, Object... objects) {
         super.setUp(url, screen, objects);
         thumb.setAlpha(0.1f);
-        iv_coverage.setVisibility(VISIBLE);
+//        iv_coverage.setAlpha(0.1f);
+//        iv_coverage.setVisibility(VISIBLE);
         if (currentScreen == SCREEN_WINDOW_FULLSCREEN) {
             start.setVisibility(View.VISIBLE);
         } else {
@@ -77,6 +78,7 @@ public class LemonPlayer extends JCVideoPlayerStandard {
     public void onStatePause() {
         super.onStatePause();
         setTransparencyVisible(VISIBLE);
+//        iv_coverage.setAlpha(0.1f);
         // thumb.setImageResource(R.mipmap.ic_launcher);
 
     }
@@ -90,7 +92,7 @@ public class LemonPlayer extends JCVideoPlayerStandard {
     public void onStateNormal() {
         super.onStateNormal();
         thumb.setAlpha(0.1f);
-
+//        iv_coverage.setAlpha(0.1f);
         // iv_coverage.setVisibility(VISIBLE);
     }
 
@@ -116,5 +118,7 @@ public class LemonPlayer extends JCVideoPlayerStandard {
         // 视频预加载时期
         super.onStatePreparing();
         thumb.setAlpha(1f);
+//        iv_coverage.setAlpha(0.1f);
+
     }
 }

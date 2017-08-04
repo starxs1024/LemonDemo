@@ -35,5 +35,5 @@ public class Constant {
             + "        \"videolink\": \"http://d90mtt9ugu6z7.cloudfront.net/prod/video/2016/1229/08e96bd6-cdb6-11e6-a699-d4ae5296039d_wpd.mp4\",\n"
             + "        \"imaglinks\": \"http://d90mtt9ugu6z7.cloudfront.net/prod/picture/2016/1229/08e96bd6-cdb6-11e6-a699-d4ae5296039d_wpd.jpg\"\n"
             + "    }\n" + "]";
-    public static String LEMON_VIDEO ="";
+    public static String LEMON_VIDEO ="http://47.91.104.211:8080/Lemon/";
 }

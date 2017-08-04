@@ -31,8 +31,8 @@ public class VideoListAdapter extends BaseAdapter {
     private List<PythonBean> list;
 
     LayoutInflater mInflater;
-    @BindView(R.id.videoList)
-    ListView videoList;
+//    @BindView(R.id.videoList)
+//    ListView videoList;
     public boolean isLucency;
 
     public VideoListAdapter(Context context, List<PythonBean> list) {
@@ -83,16 +83,6 @@ public class VideoListAdapter extends BaseAdapter {
                     .findViewById(R.id.jc_time);
             convertView.setTag(viewHolder);
         }
-        // Log.d("isLucency", isLucency + "");
-        // viewHolder.layout.setAlpha(0.1f);
-        // if (isLucency) {
-        // viewHolder.layout.setAlpha(0.1f);
-        // isLucency = false;
-        // } else {
-        // viewHolder.layout.setAlpha(1f);
-        // isLucency = true;
-        // }
-
         viewHolder.jc_title.setText(list.get(position).getTitle());
         viewHolder.jc_time.setText(list.get(position).getTime());
 
@@ -110,25 +100,7 @@ public class VideoListAdapter extends BaseAdapter {
         // if (setUp) {
         Glide.with(context).load(imaglinks)
                 .into(viewHolder.jcVideoPlayer.thumb);
-        // }
-        /*
-         * } else {
-         *
-         * ImageViewHolder imageViewHolder; if (convertView != null &&
-         * convertView.getTag() != null && convertView.getTag() instanceof
-         * ImageViewHolder) { imageViewHolder = (ImageViewHolder)
-         * convertView.getTag(); } else { imageViewHolder = new
-         * ImageViewHolder(); LayoutInflater mInflater =
-         * LayoutInflater.from(context); convertView =
-         * mInflater.inflate(R.layout.item_textview, null);
-         * imageViewHolder.imageView = (ImageView) convertView
-         * .findViewById(R.id.image_view); Glide.with(context)
-         * .load("http://img04.tooopen.com/images/20131019/sy_43185978222.jpg")
-         * .into(imageViewHolder.imageView);
-         * convertView.setTag(imageViewHolder); }
-         *
-         * }
-         */
+
         return convertView;
     }
 

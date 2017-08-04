@@ -95,7 +95,9 @@
             app:headerLayout="@layout/nav_head"
             app:itemIconTint="@color/colorLightGrey"
             app:itemTextColor="@color/colorPrimary"
-            app:menu="@menu/nav_menu" />
+            app:menu="@menu/nav_menu" >
+
+        </android.support.design.widget.NavigationView>
 
     </android.support.v4.widget.DrawerLayout>
 

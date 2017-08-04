@@ -18,8 +18,8 @@ public interface LemonVideoService {
      *            一页数据显示的条数
      * @return 查询结束返回的被观察者
      */
-    // http://localhost:8080/Lemon/LemonVideo?pageNo=2
-    @GET("LemonVideo?pageNo=2")
+    // http://47.91.104.211:8080/Lemon/LemonVideo?pageNo=2
+    @GET("LemonVideo?")
     Observable<LemonVideoBean> getLemonVideo(@Query("pageNo") int page);
 
 }
